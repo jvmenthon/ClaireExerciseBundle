@@ -1,5 +1,6 @@
+
 <!doctype html>
-<html lang="en" ng-app="mainApp">
+<html lang="en" ng-app="mainApp"  lang="{{ app.request.locale }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -51,32 +52,11 @@
     <script src="{{ asset('bundles/simpleitclaireexercise/frontend/js/modules/learner/services.js') }}"></script>
 
     <!-- basic client app context definition -->
-    <script>
-        var BASE_CONFIG = {
-            urls: {
-                api: {
-                    resources: "{{ path('api_exercise_resource_list') }}",
-                    models: "{{ path('api_exercise_model_list') }}",
-                    attemptedModels: "{{ path('api_exercise_attempted_model_list') }}",
-                    attempts: "{{ path('api_attempt_list') }}",
-                    exercises: "{{ path('api_exercise_list') }}",
-                    users: "{{ path('api_user_list') }}",
-                    uploads: "{{ path('api_upload_image') }}"
-                },
-                partials: {
-                    teacher: "{{ asset('bundles/simpleitclaireexercise/frontend/partials/teacher') }}",
-                    learner: "{{ asset('bundles/simpleitclaireexercise/frontend/partials/learner') }}"
-                },
-                images: {
-                    uploads: "{{ asset('uploads/claire_exercise/') }}",
-                    exercise: "{{ asset('bundles/simpleitclaireexercise/images/exercise/') }}"
-                }
-            },
-            language: 'fr',
-            currentUserId: {{ currentUserId }}
-        };
-        angular.module('mainApp').value('BASE_CONFIG', BASE_CONFIG);
-    </script>
+   
+    <!-- translation -->
+    <script>{%  include 'SimpleITClaireExerciseBundle:Frontend/js:translations.js.twig' %}</script>
+    <!-- basic client app context definition -->
+    <script>{%  include 'SimpleITClaireExerciseBundle:Frontend/js:base_config.js.twig' %} </script>
 
 </head>
 <body ng-controller="mainUserController">
@@ -86,12 +66,12 @@
         <div class="navbar-header">
             <ul class="nav navbar-brand">
                 <li><a ui-sref="all-attempt-list"
-                       title="Consulter les exercices que vous avez généré, revoir vos réponse ou réessayer les exercices">Mes tentatives</a>
+                       title="{{ 'navigation.tentatives.texte'|trans }}">{{ 'navigation.tentatives.titre'|trans }}</a>
                 </li>
             </ul>
         </div>
         <span>
-        <a href="{{ path('claro_desktop_open') }}" title="Retour à Claroline">
+        <a href="{{ path('claro_desktop_open') }}" title="{{ 'navigation.retour.claroline'|trans }}">
             <img src="{{ asset('bundles/clarolinecore/images/logos/clarolineconnect.png') }}"
                  style="margin-right:20px;margin-top:12px;height: 32px">
         </a></span>
