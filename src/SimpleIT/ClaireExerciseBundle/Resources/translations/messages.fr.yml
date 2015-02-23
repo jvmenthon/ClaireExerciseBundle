@@ -1,0 +1,347 @@
+annexes:
+    titre: Annexes
+    texte: Document annexe
+
+document:
+    titre: Documents
+    texte: Documents annexes à présenter à l'apprenant après la consigne lors de la résolution d'un exercice. Il peut s'agir de texte ou d'image. Ajouter-les en les glissant depuis la liste des ressource.
+
+divers:
+    clique_agrandir: Cliquez pour agrandir.
+    reponse: Votre réponse
+    score: Votre score
+
+exercice :
+    titre: Exercice
+    indice: Indice de correction
+    creer:
+        qcm: Créer un questionaire à réponse courte
+        qroc: Créer un questionaire à choix multiple
+        appariement: Créer un modèle d'exercices d'appariement
+        ordonnacement: Créer un exercice d'ordonancement
+        groupement: Créer un exercice de groupement
+    generer:
+        voir: Voir les exercices générés pour ce modèle
+    type:
+        qcm: QCM
+        qroc: question à réponse courte ouverte
+        appariement: exercice d'appariement
+        ordonnacement: exercice d'ordonnancement
+        groupement: exercice de groupement
+
+    proposition:
+        titre: Propositions
+        correcte: Proposition correcte
+        forcer: Forcer l'utilisation
+        intitule: Intitulé de la proposition
+        ajouter: Ajouter une proposition
+        nombre: Nombre de propositions
+        nombre_juste: Nombre de propositions justes
+        melanger:
+            melanger: Mélanger les propositions
+            pas_melanger: Ne pas mélanger les propositions
+    solution:
+        titre: Solution
+        ajouter: Ajouter une solution
+        possible: Solutions possibles
+
+
+    tentative: 
+        creer: Voir les tentatives créées pour cet exercice
+        nouvelle: Nouvelle tentative pour cet exercice
+        reponse_aucune: Aucune réponse postée pour cette tentative
+        repondre: Répondre à cette tentative
+        voir: Voir cette tentative
+
+    reponse:
+        partie_fixe: 
+            titre: Partie fixe
+            texte: Partie fixe de la paire à laquelle vous devez associer une partie mobile
+        partie_mobile:
+            titre: Partie mobile
+            depose: Déposer une partie mobile ici
+        format:
+            titre: Formats de réponse attendus
+        attendue: La bonne réponse attendue
+        proposition : Votre proposition de réponse
+        solution: Solution
+        valeur: Valeur
+
+filtre:
+    type: Filtrer par type
+    model_exercice:  Filtrer mes modèles d'exercices
+    ressources : Filtrer mes ressources
+    supprimer: Supprimer ce filtre
+    ajouter: Ajouter ce filtre
+
+groupe:
+    gestion: 
+        label: Gestion des groupes
+        affichage: Mode d'affichage des noms de groupes
+        afficher: Afficher
+        cacher: Cacher
+        demander: Demander à l'apprenant
+    liste:
+        label: Liste des groupes
+        nom: Nom du groupe
+        ajouter: Ajouter un nouveau groupe
+
+information:
+    id:
+        titre: ID
+    auteur:
+        titre: Auteur
+    titre:
+        titre: Titre
+        texte: Permet de retrouver le modèle dans les listes
+    
+    proprietaire:
+        titre: Propriétaire
+
+    option:
+        partage:
+            titre: Partagé
+            texte: Ce modèle est-il partagé avec les autres auteurs ?
+        archive:
+            titre: Archivé
+        archives:
+            titre: Archivés
+        complet:
+            titre: Complet
+            texte: Ce modèle est-il valide pour générer des exercices ?
+            texte-ressource: Cette ressource est-elle valide, utilisable dans un exercice ? 
+        brouillon:
+            titre: Brouillon
+        prives: 
+            titre: Privés
+        publics:
+            titre: Publiques
+            Publiques: Publiques
+
+    contenu:
+        titre: Contenu
+    question: 
+        titre: Question
+
+    commentaire:
+        titre: Commentaire
+
+    consigne:
+        titre: Consigne
+        placeholder: Consigne de l'exercice
+        
+meta:
+    titre: Métadonnées
+    texte: "Recherche sur des métédonnées : saisir le couple clé/valeur recherché, ou seulement la clé ou seulement la valeur"
+    cle:
+        placeholder: nouvelle clé
+    valeur: 
+        placeholder: nouvelle valeur
+    filtre:
+        ajouter: Ajouter ce filtre
+        supprimer: Supprimer ce filtre
+    couple:
+        ajouter: Ajouter ce couple de métadonnées
+        supprimer: Supprimer ce couple de métadonnées
+
+model:
+    exercice:
+        titre: Mes modèles d'exercices
+        texte: Liste des modèles d'exercices que vous possédez ou auxquels vous avez accès
+        aucun: Aucun exercice pour ce modèle
+    essayer:
+        titre: Essayer
+        texte: Essayer ce modèle
+        exercice: Essayer de répondre à un exercice pour ce modèle
+        exercice_non_complet: (impossible car modèle non complet)
+    retour:
+        titre: Retour
+        texte: Retour à l'écran précédent. Toute modification non sauvegardée sera perdue.
+    sauvegarder:
+        titre: Sauvegarder
+        texte: Sauvegarder les modifications. Ne peut pas être annulé.
+    sauvegarder_essayer:
+        titre: Essayer
+        texte: Sauvegarder puis essayer le modèle 
+    supprimer:
+        titre: Supprimer
+        texte: Supprimer ce modèle. Possible uniquement si aucun exercise n'a été généré à partir de ce modèle
+        utilise: Supprimer ce modèle (impossible car des exercices ont été générés avec ; il est donc utilisé)
+    voir: Voir ce modèle (édition impossible)
+    creer: Créer un nouveau modèle
+    editer: Editer ce modèle
+    dupliquer: "Dupliquer ce modèle : créer un nouveau modèle identique à celui-ci."
+    importer: "Importer ce modèle : créer un nouveau modèle identique à celui-ci et dont vous êtes le propriétaire. Cette opération importe automatiquement les ressources publiques associées à ce modèle."
+    abonner: "S'abonner à ce modèle : il fait à présent partie de vos modèles privés mais vous faites confiance à l'auteur. Vous bénéficierez des modifications qu'il apportera au modèle. Vous ne pourrez pas le modifier de votre côté. Il s'agit d'un raccourci vers le modèle d'un autre utilisateur."
+    restaurer: Restaurer ce modèle
+    archiver: Archiver ce modèle
+    meta: Métadonnée de ce modèle
+
+    type: Type de modèle
+    consigne: Consigne du modèle d'exercice
+    exercice:
+        voir: Voir les exercices générés pour ce modèle
+        aucun: Aucun exercice pour ce modèle
+
+mots-cle:
+    titre: Mots-clés
+    recherche:
+        titre: Recherche sur les mots-clés
+        texte: Recherche sur des mots-clés
+    ajouter:
+        titre: Ajouter ce mot-clé
+        placeholder : nouveau mot-clé
+    supprimer:
+        titre: Supprimer ce mot-clé
+
+mot:  
+    oui: oui
+    non: non
+    resultat: résultat
+    score: Votre score
+    aide: aide
+
+navigation:
+    retour: 
+        titre: Retour
+        texte: Retour à la page précédente. Toute progression non sauvegardée sera perdue.
+        claroline: Retour à Claroline
+    valider:
+        titre: Valider
+        texte: Envoyer la réponse et obtenir la correction
+    nouvelle_tentative:
+        titre: Nouvelle tentative pour cet exercice
+    aller_partie: Accéder à la partie
+    de_exercice: de l'exercice
+
+objet:
+    glisser-deposer: 
+        titre: Objets à glisser-déposer
+        texte: Déposez ces objets dans les cases ci dessous afin de les regrouper
+        bonne-paire: Déposez ces objets dans les cases ci dessous afin de constituer les bonnes paires.
+        ordre: Déposez ces objets dans l'ordre demandé.
+    zone:
+        groupe: Groupe
+        depose: Déposez les objets ici
+        depose-un: Déposer un objet ici
+        placee:
+            image: Image placée
+    correction:
+        titre: Correction
+        reponse:
+            titre: Ce que vous avez répondu
+        solution: Solution
+        autre_groupe: Cet objet aurait du être placé dans ce groupe
+
+
+
+question:
+    bloc:
+        titre: Bloc de question
+        descrition: Un bloc désigne un ensemble de ressources dont une partie sera tirée aléatoirement lors de la génération d'exercices
+        paire: Bloc d'appariement
+    melange:
+        titre: Mélanger les questions
+        melanger: Mélanger
+        pas_melanger: Ne pas mélanger
+
+    nombre:
+        question:
+            titre: Nombre de questions
+            texte: Le nombre de ressources à utiliser parmi celles de ce bloc pour constituer des paires lors de la génération de l'exercice
+        proposition:
+            titre: Nombre de propositions
+            texte: Nombre de propositions par question.
+            ignore: Si cette option vaut 0, elle est ignorée. Sinon, elle remplace la valeur éventuelle précisée dans chacune des ressources.
+        proposition_juste:
+            titre: Nombre de propositions justes
+            texte: Nombre de propositions justes par question.
+
+        type:
+            qcm: Question de QCM
+
+
+
+
+recherche:
+    titre: Recherche
+    placeholder: Rechercher
+    texte: Rechercher dans le titre, les métadonnées et les mots-clés du modèle
+
+ressource:
+    titre: Mes ressources
+    texte: Liste des ressources que vous possédez ou auxquelles vous avez accès
+
+    type:
+        image: Image
+        texte: Texte
+        qcm: QCM
+        qroc: Question à réponse courte ouverte
+    creer:
+        titre: Créer une ressource
+        image: Créer une image
+        texte: Créer un texte
+
+    bloc:
+        titre: Un bloc désigne un ensemble de ressources dont une partie sera tirée aléatoirement lors de la génération d'exercices
+        texte: Bloc de ressources
+
+    nombre:
+        titre: Le nombre de ressources à utiliser parmi celles de ce bloc pour constituer la liste des objets à placer lors de la génération de l'exercice
+        texte: Nombre de ressources
+
+    orpheline :
+        label: Ressources orphelines (sans nom de groupe)
+        pas_utiliser: 
+          label: Ne pas utiliser ces ressources
+          description: Les ressources orphelines ne sont pas utilisées par le modèle d'exercice.
+        regrouper: 
+          label: Les regrouper
+          description: Les ressources orphelines sont regroupées dans un nouveau groupe nommé "Autre".
+
+    retour:
+        titre: Retour
+        texte: Retour à l'écran précédent. Toute modification non sauvegardée sera perdue.
+    sauvegarder:
+        titre: Sauvegarder
+        texte: Sauvegarder les modifications. Ne peut pas être annulé.
+    supprimer:
+        titre: Supprimer
+        texte: Supprimer cette ressource. Possible uniquement si cette ressource n'est pas utilisée par ailleurs.
+
+    formule:
+        titre: Formules
+        nom: Nom de la formule
+        nouvelle: Nouvelle formule
+        type:
+            titre: Type
+            entier: Entier
+            decimal:
+                titre: Décimal
+                nombre: Nombre de décimales après la virgule
+        variable:
+            titre: Variables
+            nom: Nom de la variable
+            nouvelle: Nouvelle variable
+            valeur:
+                titre: Valeur
+                liste: Liste de valeurs
+                intervalle: Intervalle
+                expression: Expression
+                min: Min
+                max: Max
+                pas: Pas
+        inconnue:
+            titre: Inconnue
+            nom: "Nom de l'inconnue"
+
+    selectionner:
+        annuler: Annuler la ressource sélectionnée
+        meta: Sélectionner une ressource comme métadonnée
+    ajouter_meta: Ajouter ce couple de métadonnées
+
+tentative:
+    titre: Mes tentatives
+    model:
+        nouvelle: Nouvelle tentative pour ce modèle
+        incomplet: (impossible car modèle incomplet)
