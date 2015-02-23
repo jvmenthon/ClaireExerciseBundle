@@ -1,0 +1,22 @@
+<div class="navbar navbar-fixed-bottom navbar-inverse">
+    <div class="col-xs-5">
+        <button back-Button class="btn btn-primary"
+            title="{{ 'navigation.retour.texte'|trans }}">{{ 'navigation.retour.titre'|trans }}</button>
+        <button ng-hide="!validable" ng-click="saveAnswer()" class="btn btn-primary"
+            title="{{ 'navigation.valider.texte'|trans }}">{{ 'navigation.valider.titre'|trans }} </button>
+        <button ng-click="tryModel(exercise.exercise_model)" class="btn btn-primary"
+                title="{{ 'navigation.nouvelle_tantative.titre'|trans }}">
+            <span class="glyphicon glyphicon-repeat"></span>
+        </button>
+    </div>
+
+    <div class="col-xs-7">
+        <button ng-if="items.length > 1"
+                ng-repeat="it in items track by $index"
+                ng-click="gotoItem($index)" class="btn"
+                data-ng-class="{'btn-primary': !it.corrected, 'btn-active': it.item_id == item.item_id}"
+            title="{{ 'navigation.aller_partie'|trans }}  {{ '{{ $index + 1 }}' }} {{ 'navigation.de_exercice'|trans }} ">
+            {{ '{{ $index + 1 }}' }}
+        </button>
+    </div>
+</div>

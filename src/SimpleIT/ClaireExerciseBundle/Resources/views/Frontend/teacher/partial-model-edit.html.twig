@@ -1,0 +1,343 @@
+<div data-ng-controller="modelController">
+<div class="row" data-ng-controller="modelEditController">
+
+<div class="col-xs-12">
+    <div class="panel-body">
+        <div class="panel panel-primary" style="margin-bottom: 0">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-centered" ng-switch="model.type">
+                        <div ng-switch-when="multiple-choice">
+                            <span title="{{ 'question.type.qcm'|trans }}" class="glyphicon glyphicon-check" style="font-size:500%"></span>
+                        </div>
+                        <div ng-switch-when="open-ended-question">
+                                    <span class="glyphicon glyphicon-question-sign" style="font-size: 500%"
+                                          title="{{ 'question.type.qroc'|trans }}"></span>
+                        </div>
+                        <div ng-switch-when="pair-items">
+                            <span title="{{ 'question.type.appariement'|trans }}" class="glyphicon glyphicon-random" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="order-items">
+                            <span title="{{ 'question.type.ordonnacement'|trans }}" class="glyphicon glyphicon-sort" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="group-items">
+                            <span title="{{ 'question.type.groupement'|trans }}" class="glyphicon glyphicon-link" style="font-size: 500%"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-centered">
+                        <div class="col-xs-6">
+                            <h4>{{ 'information.titre.texte'|trans }}</h4>
+                            <input type="text" ng-model="model.title" class="form-control"
+                                   title="{{ 'information.titre.titre'|trans }}"/>
+                        </div>
+                        <div class="col-xs-3">
+                            <h4>{{ 'information.auteur.titre'|trans }}</h4>
+                            <input type="text" ng-model="users[model.author].user_name" class="form-control" disabled>
+                        </div>
+                        <div class="col-xs-3">
+                            <h4>{{ 'information.proprietaire.titre'|trans }}</h4>
+                            <input type="text" ng-model="users[model.owner].user_name"
+                                   class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-centered">
+                        <div class="col-xs-6">
+                            <div title="{{ 'information.option.partage.texte'|trans }}" data-ng-click="model.public=!model.public">
+                                <div class="col-centered">
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': model.public, 'glyphicon-unchecked': !model.public}"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.partage.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-centered">
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': model.archived, 'glyphicon-unchecked': !model.archived}" data-ng-click="model.archived=!model.archived"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.archive.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                            <!--<div>-->
+                            <!--<div class="col-centered">-->
+                            <!--<span class="glyphicon" ng-class="{'glyphicon-check': model.draft, 'glyphicon-unchecked': !model.draft}" data-ng-click="model.draft=!model.draft"></span>-->
+                            <!--</div>-->
+                            <!--<div class="col-centered">-->
+                            <!--<h4>{{ 'information.option.brouillon.titre'|trans }}</h4>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col-xs-6">
+                            <div
+                                title="{{ 'information.option.complet.texte'|trans }} {{ '{{ completeError[model.complete_error] }}' }}">
+                                <div class="col-centered">
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': model.complete, 'glyphicon-unchecked': !model.complete}"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.complet.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+    ng-class="{'col-xs-5': !$parent.toggleResourceList, 'col-xs-12': $parent.toggleResourceList}">
+<div class="panel-body">
+
+<accordion
+    title="{{ 'document.texte'|trans }}">
+    <accordion-group class="panel panel-primary">
+        <accordion-heading class="panel-heading">
+            <div class="row">
+                <div class="col-xs-11" data-ng-click="">
+                    {{ 'document.titre'|trans }}&nbsp;<span class="caret"></span>
+                </div>
+                <div class="col-xs-1">
+                    <span data-ng-click="" class="glyphicon glyphicon-plus"></span>
+                </div>
+            </div>
+        </accordion-heading>
+        <div class="panel-body panel panel-primary" collapse="context.pair_items.pair_blocks.resources.collapse" ui-on-Drop="onDropDocument($event,$data,model.content.documents)">
+            <accordion close-others="true">
+                <accordion-group class="panel panel-success" data-ng-repeat="documentId in model.content.documents track by $index" class="row">
+                    <accordion-heading class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-2" ng-switch="resources[documentId.id].type">
+                                <div ng-switch-when="text">
+                                    <span title="{{ 'ressource.type.texte'|trans }}" class="glyphicon glyphicon-font" style="font-size: 260%"></span>
+                                </div>
+                                <div ng-switch-when="picture">
+                                    <img title="{{ 'ressource.type.image'|trans }}" ng-src=" {{ '{{BASE_CONFIG.urls.images.uploads}}{{resources[documentId.id].content.source}}' }}" style="width: 40px; height: 40px;"/>
+                                </div>
+                                <div ng-switch-when="multiple-choice-question">
+                                    <span title="{{ 'ressource.type.qcm'|trans }}" class="glyphicon glyphicon-check" style="font-size: 260%"></span>
+                                </div>
+                                <div ng-switch-when="open-ended-question">
+                                                <span class="glyphicon glyphicon-question-sign" title="{{ 'ressource.type.qroc'|trans }}"
+                                                      style="font-size: 260%"></span>
+                                </div>
+                                <div ng-switch-when="sequence">
+                                    <span class="glyphicon glyphicon-sort-by-order" style="font-size: 260%"></span>
+                                </div>
+                            </div>
+                            <div class="col-xs-8">
+                                <h4>{{ '{{ resources[documentId.id].title }}' }}&nbsp;<span class="caret"></span>
+                                </h4>
+                            </div>
+                            <div class="col-xs-1">
+
+                            </div>
+                            <div class="col-xs-1">
+                                            <span data-ng-click="$event.stopPropagation();modelRemoveField(model.content.documents, $index)"
+                                                  class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                    </accordion-heading>
+                    <div class="col-centered">
+                        <label>{{ 'information.id.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].id }}' }}
+                    </div>
+                    <div class="col-centered">
+                        <label>{{ 'information.auteur.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ users[resources[documentId.id].author].user_name }}' }}
+                    </div>
+                    <div class="col-centered">
+                        <label>{{ 'information.proprietaire.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ users[resources[documentId.id].owner].user_name }}' }}
+                    </div>
+                    <div class="col-centered">
+                        <label>{{ 'information.partage.titre'|trans }}&nbsp;:&nbsp;</label>
+                        <ng-switch on="resources[documentId.id].public">
+                            <span ng-switch-when="true">Oui</span>
+                            <span ng-switch-when="false">Non</span>
+                        </ng-switch>
+                    </div>
+                    <div class="col-centered">
+                        <label>{{ 'information.option.complet.titre'|trans }}&nbsp;:&nbsp;</label>
+                        <ng-switch on="resources[documentId.id].complete">
+                            <span ng-switch-when="true">Oui</span>
+                            <span ng-switch-when="false">Non</span>
+                        </ng-switch>
+                    </div>
+                    <div class="col-centered" ng-switch="resources[documentId.id].type">
+                        <div ng-switch-when="text">
+                            <label>{{ 'information.contenu.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].content.text }}' }}
+                        </div>
+                        <div ng-switch-when="picture">
+                            <label>{{ 'information.contenu.titre'|trans }}&nbsp;:&nbsp;</label>
+                            <a href="{{ '{{BASE_CONFIG.urls.images.uploads}}{{resources[documentId.id].content.source}}' }}"
+                               data-lightbox="res" data-title="La ressource">
+                                <img ng-src="{{ '{{BASE_CONFIG.urls.images.uploads}}{{resources[documentId.id].content.source}}' }}"/>
+                            </a>
+                        </div>
+                        <div ng-switch-when="multiple-choice-question">
+                            <label>{{ 'information.question.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].content.question }}' }}
+                        </div>
+                        <div ng-switch-when="open-ended-question">
+                            <label>{{ 'information.question.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].content.question }}' }}
+                        </div>
+                    </div>
+                    <div class="col-centered" ng-switch="resources[documentId.id].type">
+                        <div ng-switch-when="multiple-choice-question">
+                            <label>{{ 'information.commentaire.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].content.comment }}' }}
+                        </div>
+                        <div ng-switch-when="open-ended-question">
+                            <label>{{ 'information.commentaire.titre'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resources[documentId.id].content.comment }}' }}
+                        </div>
+                    </div>
+                </accordion-group>
+            </accordion>
+        </div>
+    </accordion-group>
+</accordion>
+
+<accordion>
+    <accordion-group class="panel panel-primary" is-open="true">
+        <accordion-heading class="panel-heading">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{ 'information.consigne.titre'|trans }}&nbsp;<span class="caret"></span>
+                </div>
+            </div>
+        </accordion-heading>
+        <textarea class="form-control" rows="5" placeholder="{{ 'information.consigne.placeholder'|trans }}" ng-model="model.content.wording"></textarea>
+    </accordion-group>
+</accordion>
+
+<div ng-switch="model.type">
+    <div ng-switch-when="pair-items">
+        <div ng-include
+             src="BASE_CONFIG.urls.partials.teacher.model.pair_items"
+             data-ng-controller="modelEditPairItemsController"></div>
+    </div>
+    <div ng-switch-when="order-items">
+        <div ng-include
+             src="BASE_CONFIG.urls.partials.teacher.model.edit_order_items"
+             data-ng-controller="modelEditOrderItemsController"></div>
+    </div>
+    <div ng-switch-when="multiple-choice">
+        <div ng-include
+             src="BASE_CONFIG.urls.partials.teacher.model.edit_multiple_choice"
+             data-ng-controller="modelEditMultipleChoiceController"></div>
+    </div>
+    <div ng-switch-when="group-items">
+        <div ng-include
+             src="BASE_CONFIG.urls.partials.teacher.model.edit_groupe_items"
+             data-ng-controller="modelEditGroupItemsController"></div>
+    </div>
+    <div ng-switch-when="open-ended-question">
+        <div ng-include
+             src="BASE_CONFIG.urls.partials.teacher.model.edit_open_ended_question"
+             data-ng-controller="modelEditOpenEndedQuestionController"></div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ 'mots-cle.titre'|trans }}
+        <div class="row">
+            <div ng-repeat="keyword in model.keywords track by $index">
+                <div class="col-xs-5">
+                    <input type="text" ng-model="keyword" class="form-control" disabled>
+                </div>
+                <div class="col-xs-1"><span data-ng-click="modelRemoveField(model.keywords, $index)"
+                                            class="glyphicon glyphicon-remove"
+                                            title="{{ 'mots-cle.supprimer.titre'|trans }}"></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5"><input id="modelAddKeyword" type="text" value=""
+                                         placeholder="{{ 'mots-cle.ajouter.placeholder'|trans }}" class="form-control"></div>
+            <div class="col-xs-1"><span data-ng-click="modelAddKeywordsField(model.keywords)"
+                                        class="glyphicon glyphicon-ok"
+                                        title="{{ 'mots-cle.ajouter.titre'|trans }}"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{ 'meta.titre'|trans }}
+        <div class="row">
+            <div ng-repeat="meta in model.metadata track by $index">
+                <div class="col-xs-5">
+                    <input type="text" ng-model="meta.key" class="form-control" disabled>
+                </div>
+                <div class="col-xs-6">
+                    <input type="text" ng-model="meta.value" class="form-control" disabled>
+                </div>
+                <div class="col-xs-1"><span data-ng-click="modelRemoveField(model.metadata, $index)"
+                                            class="glyphicon glyphicon-remove"
+                                            title="{{ 'meta.couple.supprimer'|trans }}"></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5"><input id="modelAddMetadataKey" type="text" value=""
+                                         placeholder="{{ 'meta.cle.placeholder'|trans }}" class="form-control"></div>
+            <div class="col-xs-6"><input id="modelAddMetadataValue" type="text" value=""
+                                         placeholder="{{ 'meta.valeur.placeholder'|trans }}" class="form-control"></div>
+            <div class="col-xs-1"><span data-ng-click="modelAddMetadataField(model.metadata)"
+                                        class="glyphicon glyphicon-ok"
+                                        title="{{ 'meta.couple.ajouter'|trans }}"></span></div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar">
+    <button back-Button class="btn btn-primary"
+            title="{{ 'model.retour.texte'|trans }}">{{ 'model.retour.titre'|trans }}
+    </button>
+    <button ng-if="BASE_CONFIG.currentUserId == model.owner && model.parent == null"
+            ng-click="updateModel()" class="btn btn-primary"
+            title="{{ 'model.sauvegarder.texte'|trans }}">
+        {{ 'model.sauvegarder.titre'|trans }}
+    </button>
+    <button ng-if="BASE_CONFIG.currentUserId == model.owner"
+            ng-disabled="!model.complete"
+            ng-click="saveAndTry(model)" class="btn btn-primary"
+            title="{{ 'model.sauvegarder_essayer.texte'|trans }}">
+        {{ 'model.sauvegarder_essayer.titre'|trans }}
+    </button>
+    <button ng-if="BASE_CONFIG.currentUserId != model.owner"
+            ng-disabled="!model.complete"
+            ng-click="tryModel(model)" class="btn btn-primary"
+            title="{{ 'model.essayer.texte'|trans }}">
+        {{ 'model.essayer.titre'|trans }}
+    </button>
+    <button ng-if="BASE_CONFIG.currentUserId == model.owner && model.removable"
+            ng-click="deleteModel(model)" back-Button
+            class="btn btn-danger pull-right"
+            title="{{ 'model.supprimer.texte'|trans }}">
+        {{ 'model.supprimer.titre'|trans }}
+    </button>
+</div>
+
+</div>
+</div>
+
+<script>
+    $(function () {
+        var window_height = $(window).height(),
+            content_height = window_height - 190; // 484
+
+        $('.scrollContainer').height(content_height);
+    });
+
+    $(window).resize(function () {
+        var window_height = $(window).height(),
+            content_height = window_height - 190;
+        $('.scrollContainer').height(content_height);
+    });
+</script>
+
+<div class="scrollContainer"
+     ng-class="{'col-xs-7': !$parent.toggleResourceList, 'hide': $parent.toggleResourceList}">
+    <div ui-view>
+        <div data-ng-include="BASE_CONFIG.urls.partials.teacher.resource.list"></div>
+    </div>
+</div>
+
+</div>
+</div>

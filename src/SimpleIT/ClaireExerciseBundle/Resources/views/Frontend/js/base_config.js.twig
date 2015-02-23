@@ -1,0 +1,54 @@
+var BASE_CONFIG = {
+    urls: {
+        api: {
+            resources: "{{ path('api_exercise_resource_list') }}",
+            models: "{{ path('api_exercise_model_list') }}",
+            attemptedModels: "{{ path('api_exercise_attempted_model_list') }}",
+            attempts: "{{ path('api_attempt_list') }}",
+            exercises: "{{ path('api_exercise_list') }}",
+            users: "{{ path('api_user_list') }}",
+            uploads: "{{ path('api_upload_image') }}"
+        },
+        partials: {
+            teacher: {
+                model:{
+                    list: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-list'}) }}",
+                    edit: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit'}) }}",
+                    edit_pair_items: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit-pair-items'}) }}", 
+                    edit_order_items: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit-order-items'}) }}",
+                    edit_multiple_choice: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit-multiple-choice'}) }}",
+                    edit_groupe_items: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit-group-items'}) }}",
+                    edit_open_ended_question: "{{ path('frontend_teacher_template_angular', {'file': 'partial-model-edit-open-ended-question'}) }}"
+
+                },
+                resource: {
+                    list: "{{ path('frontend_teacher_template_angular', {'file': 'partial-resource-list'}) }}",
+                    edit: "{{ path('frontend_teacher_template_angular', {'file': 'partial-resource-edit'}) }}",
+                    panel: "{{ path('frontend_teacher_template_angular', {'file': 'fragment-resource-panel'}) }}",
+                    block: "{{ path('frontend_teacher_template_angular', {'file': 'fragment-resource-in-block'}) }}"
+                },
+                constraint_list: "{{ path('frontend_teacher_template_angular', {'file': 'fragment-constraint-list'}) }}",
+                export_question:  "{{ path('frontend_teacher_template_angular', {'file': 'fragment-resource-panel'}) }}"
+            },
+            learner: {
+                attempt: "{{ path('frontend_learner_template_angular', {'file': 'partial-attempt'}) }}",
+                attempt_list: "{{ path('frontend_learner_template_angular', {'file': 'partial-attempt-list'}) }}",
+                items: {
+                    pair: "{{ path('frontend_learner_template_angular', {'file': 'partial-pair-items'}) }}",
+                    order: "{{ path('frontend_learner_template_angular', {'file': 'partial-order-items'}) }}",
+                    group: "{{ path('frontend_learner_template_angular', {'file': 'partial-group-items'}) }}"
+                },
+                multiple_choice: "{{ path('frontend_learner_template_angular', {'file': 'partial-multiple-choice'}) }}",
+                multiple_choice_formula: "{{ path('frontend_learner_template_angular', {'file': 'partial-multiple-choice-formula'}) }}",
+                open_ended_question:  "{{ path('frontend_learner_template_angular', {'file': 'partial-open-ended-question'}) }}"
+            }
+        },
+        images: {
+            uploads: "{{ asset('uploads/claire_exercise/') }}",
+            exercise: "{{ asset('bundles/simpleitclaireexercise/images/exercise/') }}"
+        }
+    },
+    language: 'fr',
+    currentUserId: {{ currentUserId }}
+};
+angular.module('mainApp').value('BASE_CONFIG', BASE_CONFIG);

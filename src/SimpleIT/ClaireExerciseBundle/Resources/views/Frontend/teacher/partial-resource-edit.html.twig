@@ -1,0 +1,552 @@
+<div data-ng-controller="resourceController">
+<div class="row" data-ng-controller="resourceEditController">
+
+<div class="col-xs-12">
+    <div class="panel-body">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-1" ng-switch="editedResource.type">
+                        <div ng-switch-when="text">
+                            <span title="{{ 'ressource.type.texte'|trans }}" class="glyphicon glyphicon-font" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="picture">
+                            <span title ="{{ 'ressource.type.image'|trans }}" class="glyphicon glyphicon-picture" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="multiple-choice-question">
+                            <span title="{{ 'exercice.type.qcm'|trans }}" class="glyphicon glyphicon-check" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="open-ended-question">
+                            <span title="{{ 'exercice.type.qroc'|trans }}" class="glyphicon glyphicon-question-sign" style="font-size: 500%"></span>
+                        </div>
+                        <div ng-switch-when="sequence">
+                            <span title="{{ 'exercice.type.appariement'|trans }}" class="glyphicon glyphicon-random" style="font-size: 500%"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="col-xs-6">
+                            <h4>{{ 'information.titre.titre'|trans }}</h4>
+                            <input type="text" ng-model="editedResource.title" class="form-control" ng-required/>
+                        </div>
+                        <div class="col-xs-3">
+                            <h4>{{ 'information.auteur.titre'|trans }}</h4>
+                            <input type="text" ng-model="users[editedResource.author].user_name" class="form-control" disabled>
+                        </div>
+                        <div class="col-xs-3">
+                            <h4>{{ 'information.proprietaire.titre'|trans }}</h4>
+                            <input type="text" ng-model="users[editedResource.owner].user_name"
+                                   class="form-control" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="col-xs-6">
+                            <div title="{{ 'information.option.partage.texte'|trans }}" data-ng-click="editedResource.public=!editedResource.public">
+                                <div class="col-centered">
+                                    <!--DEMO<span class="glyphicon" ng-class="{'glyphicon-check': editedResource.public, 'glyphicon-unchecked': !editedResource.public}" data-ng-click="editedResource.public=!editedResource.public"></span>-->
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': editedResource.public, 'glyphicon-unchecked': !editedResource.public}"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.partage.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="col-centered">
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': editedResource.archived, 'glyphicon-unchecked': !editedResource.archived}" data-ng-click="editedResource.archived=!editedResource.archived"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.archive.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                            <!--<div>-->
+                            <!--<div class="col-centered">-->
+                            <!--<span class="glyphicon" ng-class="{'glyphicon-check': editedResource.draft, 'glyphicon-unchecked': !editedResource.draft}" data-ng-click="editedResource.draft=!editedResource.draft"></span>-->
+                            <!--</div>-->
+                            <!--<div class="col-centered">-->
+                            <!--<h4>{{ 'information.option.brouillon.texte'|trans }}</h4>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="col-xs-6">
+                            <div
+                                title="{{ 'information.option.complet.texte-ressource'|trans }} {{ '{{ completeError[editedResource.complete_error] }}' }}">
+                                <div class="col-centered">
+                                    <span class="glyphicon" ng-class="{'glyphicon-check': editedResource.complete, 'glyphicon-unchecked': !editedResource.complete}"></span>
+                                </div>
+                                <div class="col-centered">
+                                    <h4>{{ 'information.option.complet.titre'|trans }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12">
+<div class="panel-body">
+
+<div ng-switch="editedResource.type">
+    <div ng-switch-when="text">
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <h4>{{ 'ressource.type.texte'|trans }}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div text-angular ng-model="editedResource.content.text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div ng-switch-when="picture">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-11">
+                        <h4>{{ 'ressource.type.image'|trans }}</h4>
+                    </div>
+                    <div class="col-xs-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <input type="file" ng-file-select="onFileSelect($files)">
+                    </div>
+                </div>
+                <a href="{{ '{{BASE_CONFIG.urls.images.uploads}}{{editedResource.content.source}}' }}"
+                   data-lightbox="res" data-title="La ressource">
+                    <img ng-src="{{ '{{BASE_CONFIG.urls.images.uploads}}{{editedResource.content.source}}' }}"
+                         style="height: 100px; width: auto"/>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div ng-switch-when="multiple-choice-question">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-centered">
+                        <h4>{{ 'exercice.proposition.nombre'|trans }}</h4>
+                        <input type="number" ng-model="editedResource.content.max_number_of_propositions" class="form-control" style="height: 25px">
+                    </div>
+                    <div class="col-centered">
+                        <h4>{{ 'exercice.proposition.nombre_juste'|trans }}</h4>
+                        <input type="number" ng-model="editedResource.content.max_number_of_right_propositions" class="form-control" style="height: 25px">
+                    </div>
+                    <div class="col-centered">
+                        <h4>{{ 'exercice.proposition.melanger.melanger'|trans }}</h4>
+                            <span data-ng-click="editedResource.content.do_not_shuffle=!editedResource.content.do_not_shuffle">
+                                <span class="glyphicon" ng-class="{'glyphicon-check': editedResource.content.do_not_shuffle, 'glyphicon-unchecked': !editedResource.content.do_not_shuffle}"></span>
+                                {{ 'exercice.proposition.melanger.pas_melanger'|trans }}
+                            </span> &nbsp;&nbsp;
+                            <span data-ng-click="editedResource.content.do_not_shuffle=!editedResource.content.do_not_shuffle">
+                                <span class="glyphicon" ng-class="{'glyphicon-unchecked': editedResource.content.do_not_shuffle, 'glyphicon-check': !editedResource.content.do_not_shuffle}"></span>
+                                {{ 'exercice.proposition.melanger.melanger'|trans }}
+                            </span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h4> {{ 'exercice.indice'|trans }}</h4>
+                        <input type="text" ng-model="editedResource.content.comment" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-success" is-open="true">
+            <div class="panel-heading">
+                <h4>{{ 'exercice.type.qcm'|trans }}</h4>
+                <input type="text" ng-model="editedResource.content.question" class="form-control">
+            </div>
+            <div style="margin-left:1%; margin-right: 1%">
+                <h4>{{ 'exercice.proposition.titre'|trans }}</h4>
+
+                <div class="panel panel-success row" data-ng-repeat="proposition in editedResource.content.propositions track by $index">
+                    <div class="col-xs-5">
+                        <label>{{ 'exercice.proposition.intitule'|trans }}</label>
+                        <input type="text" ng-model="proposition.text" class="form-control">
+                    </div>
+                    <div class="col-xs-3 text-center" data-ng-click="proposition.right=!proposition.right">
+                        <span class="glyphicon" ng-class="{'glyphicon-check': proposition.right, 'glyphicon-unchecked': !proposition.right}"></span>
+                        <label>{{ 'exercice.proposition.correcte'|trans }}</label>
+                    </div>
+                    <div class="col-xs-3 text-center" data-ng-click="proposition.force_use=!proposition.force_use">
+                        <span class="glyphicon" ng-class="{'glyphicon-check': proposition.force_use, 'glyphicon-unchecked': !proposition.force_use}"></span>
+                        <label>{{ 'exercice.proposition.forcer'|trans }}</label>
+                    </div>
+                    <div class="col-xs-1">
+                        <span class="glyphicon glyphicon-remove" data-ng-click="removeFromCollection(editedResource.content.propositions, $index)"></span>
+                    </div>
+                </div>
+                <div data-ng-click="addProposition(editedResource.content.propositions)">
+                    <div>
+                        <span class="glyphicon glyphicon-plus" title="{{ 'exercice.proposition.ajouter'|trans }}"></span>&nbsp;&nbsp;
+                        <strong>{{ 'exercice.proposition.ajouter'|trans }}</strong>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-switch-when="open-ended-question">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4>{{ 'exercice.type.qroc'|trans }}</h4>
+                        <textarea type="text" rows="5" ng-model="editedResource.content.question"
+                               class="form-control"></textarea>
+                    </div>
+                    <div class="col-xs-12">
+                        <h4>{{ 'information.commentaire.titre'|trans }}</h4>
+                        <input type="text" ng-model="editedResource.content.comment" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div style="margin-left:1%; margin-right: 1%">
+                <h4>{{ 'exercice.solution.titre'|trans }}</h4>
+
+                <div class="row">
+                    <div class="col-xs-12" data-ng-repeat="solution in editedResource.content.solutions track by $index">
+                        <div class="col-xs-10">
+                            <input type="text" ng-model="solution" class="form-control" disabled>
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="glyphicon glyphicon-remove" data-ng-click="removeFromCollection(editedResource.content.solutions, $index)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-xs-10">
+                            <input type="text" id="resourceAddSolution" class="form-control">
+                        </div>
+                        <div class="col-xs-2">
+                            <span class="glyphicon glyphicon-ok" title="{{ 'exercice.solution.ajouter'|trans }}" data-ng-click="addSolution(editedResource.content.solutions)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div ng-if="editedResource.type === 'open-ended-question'"
+     class="panel panel-success">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>{{ 'ressource.formule.titre'|trans }}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row"
+         data-ng-repeat="formula in editedResource.content.formulas track by $index">
+        <div class="col-xs-12">
+            <div class="panel-body panel panel-success" style="margin:1%">
+                <label>{{ 'ressource.formule.nom'|trans }}</label>
+
+                <div class="col-centred pull-right">
+                        <span
+                            data-ng-click="removeFromCollection(editedResource.content.formulas, $index)"
+                            class="glyphicon glyphicon-remove"></span>
+                </div>
+                <br>
+                <input type="text" ng-model="formula.name" class="form-control"/>
+
+                <label>{{ 'ressource.formule.titre'|trans }}</label>
+                <input type="text" ng-model="formula.equation" class="form-control"/>
+
+                <label>{{ 'ressource.formule.variable.titre'|trans }}</label>
+
+                <div class="row"
+                     data-ng-repeat="variable in formula.variables track by $index">
+                    <div class="col-xs-12">
+                        <div class="panel-body panel panel-success" style="margin:1%">
+                            <div class="row">
+                                <div class="col-xs-3">{{ 'ressource.formule.variable.nom'|trans }}</div>
+                                <input type="text" ng-model="variable.name"
+                                       class="col-xs-8"/>
+
+                                <div class="col-xs-1">
+                                    <span
+                                        data-ng-click="removeFromCollection(formula.variables, $index)"
+                                        class="glyphicon glyphicon-remove"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3">{{ 'ressource.formule.type.titre'|trans }}</div>
+                                <div class="btn-group col-xs-9"
+                                     style="margin-top: 4px;margin-bottom: 16px">
+                                    <label class="btn btn-success"
+                                           ng-model="variable.type" btn-radio="'integer'">
+                                        {{ 'ressource.formule.type.entier'|trans }}
+                                    </label>
+                                    <label class="btn btn-success"
+                                           ng-model="variable.type" btn-radio="'float'">
+                                        {{ 'ressource.formule.type.decimal.titre'|trans }}
+                                    </label>
+                                    <!--<label class="btn btn-success"-->
+                                           <!--ng-model="variable.type" btn-radio="'scientific'">-->
+                                        <!--Scientifique-->
+                                    <!--</label>-->
+                                </div>
+                            </div>
+
+                            <div class="row" ng-if="variable.type === 'float' || variable.type === 'scientific'">
+                                <div class="col-xs-3">{{ 'ressource.formule.type.decimal.nombre'|trans }}</div>
+                                <input type="text" ng-model="variable.digits_after_point"
+                                       class="col-xs-8">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3">{{ 'ressource.formule.variable.valeur.titre'|trans }}</div>
+                                <div class="btn-group col-xs-9"
+                                     style="margin-top: 4px;margin-bottom: 16px">
+                                    <label class="btn btn-success"
+                                           ng-model="variable.value_type"
+                                           btn-radio="'values'">
+                                        {{ 'ressource.formule.variable.valeur.liste'|trans }}
+                                    </label>
+                                    <label class="btn btn-success"
+                                           ng-model="variable.value_type" btn-radio="'interval'">
+                                        {{ 'ressource.formule.variable.valeur.intervalle'|trans }}
+                                    </label>
+                                    <label class="btn btn-success"
+                                           ng-model="variable.value_type" btn-radio="'expression'">
+                                        {{ 'ressource.formule.variable.valeur.expression'|trans }}
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row"
+                                 ng-if="variable.value_type === 'values'">
+                                <div data-ng-repeat="value in variable.values track by $index">
+                                    <div class="col-xs-5">
+                                        <div class="variable-value">
+                                           {{ '{{ value }}' }}
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <span
+                                            data-ng-click="removeFromCollection(variable.values, $index)"
+                                            class="glyphicon glyphicon-remove"></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-xs-5">
+                                        <input type="text" ng-model="newValue" class="form-control"
+                                               placeholder="{{ 'meta.valeur.placeholder'|trans }}">
+                                    </div>
+                                    <div class="col-xs-1">
+                                        <span data-ng-click="variable.values.push(newValue); newValue = ''"
+                                              class="glyphicon glyphicon-ok"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"
+                                 ng-if="variable.value_type === 'interval'">
+                                <div class="col-xs-2">{{ 'ressource.formule.variable.valeur.min'|trans }} :</div>
+                                <input type="text" ng-model="variable.interval.min" class="col-xs-2">
+
+                                <div class="col-xs-2">{{ 'ressource.formule.variable.valeur.max'|trans }} :</div>
+                                <input type="text" ng-model="variable.interval.max" class="col-xs-2">
+
+                                <div class="col-xs-2">{{ 'ressource.formule.variable.valeur.pas'|trans }}Pas :</div>
+                                <input type="text" ng-model="variable.interval.step" class="col-xs-2">
+                            </div>
+                            <div class="row"
+                                 ng-if="variable.value_type === 'expression'">
+                                <div class="col-xs-3">{{ 'ressource.formule.variable.valeur.expression'|trans }} :</div>
+                                <input type="text" ng-model="variable.expression" class="col-xs-9">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-success" style="margin:1%">
+                    <div class="panel-heading"
+                         data-ng-click="formulaAddVariable(formula.variables)">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </div>
+                            <div class="col-xs-10">{{ 'ressource.formule.variable.nouvelle'|trans }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <label>{{ 'ressource.formule.inconnue.titre'|trans }}</label>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="panel-body panel panel-success" style="margin:1%">
+                            <div class="row">
+                                <div class="col-xs-3">{{ 'ressource.formule.inconnue.nom'|trans }}</div>
+                                <input type="text" ng-model="formula.unknown.name"
+                                       class="col-xs-8"/>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3">{{ 'ressource.formule.type.titre'|trans }}</div>
+                                <div class="btn-group col-xs-9"
+                                     style="margin-top: 4px;margin-bottom: 16px">
+                                    <label class="btn btn-success"
+                                           ng-model="formula.unknown.type" btn-radio="'integer'">
+                                       {{ 'ressource.formule.type.entier'|trans }} 
+                                    </label>
+                                    <label class="btn btn-success"
+                                           ng-model="formula.unknown.type" btn-radio="'float'">
+                                        {{ 'ressource.formule.type.decimal.titre'|trans }}
+                                    </label>
+                                    <!--<label class="btn btn-success"-->
+                                           <!--ng-model="formula.unknown.type" btn-radio="'scientific'">-->
+                                        <!--Scientifique-->
+                                    <!--</label>-->
+                                </div>
+                            </div>
+
+                            <div class="row" ng-if="formula.unknown.type === 'float' || formula.unknown.type === 'scientific'">
+                                <div class="col-xs-3">{{ 'ressource.formule.nouvelle'|trans }} {{ 'ressource.formule.type.decimal.nombre'|trans }}</div>
+                                <input type="text" ng-model="formula.unknown.digits_after_point"
+                                       class="col-xs-8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-success" style="margin:1%">
+        <div class="panel-heading"
+             data-ng-click="resourceAddFormula(editedResource.content.formulas)">
+            <div class="row">
+                <div class="col-xs-1">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <div class="col-xs-10">{{ 'ressource.formule.nouvelle'|trans }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4>{{ 'mots-cle.titre'|trans }}</h4>
+
+        <div class="row">
+            <div ng-repeat="keyword in editedResource.keywords track by $index">
+                <div class="col-xs-5">
+                    <input type="text" ng-model="keyword" class="form-control" disabled>
+                </div>
+                <div class="col-xs-1"><span data-ng-click="removeFromCollection(editedResource.keywords, $index)"
+                                            class="glyphicon glyphicon-remove"
+                                            title="{{ 'mots-cle.supprimer.titre'|trans }}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <input id="resourceAddKeyword" type="text" value=""
+                       placeholder="{{ 'mots-cle.ajouter.placeholder'|trans }}" class="form-control"></div>
+            <div class="col-xs-1"><span data-ng-click="resourceAddKeywordsField(editedResource.keywords)"
+                                        class="glyphicon glyphicon-ok"
+                                        title="{{ 'mots-cle.ajouter.titre'|trans }}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4>{{ 'meta.titre'|trans }}</h4>
+
+        <div class="row">
+            <div ng-repeat="meta in editedResource.metadata track by $index"
+                 ng-init="resource = resources[meta.value.substring(2)]">
+                <div class="col-xs-3">
+                    <input type="text" ng-model="meta.key" class="form-control">
+                </div>
+                <div class="col-xs-7">
+                    <input ng-if="meta.value.substring(0,2) != '__' || isNan(meta.value.substring(2))"
+                           type="text" ng-model="meta.value" class="form-control">
+                    <accordion ng-if="meta.value.substring(0,2) == '__' && !isNan(meta.value.substring(2))"
+                               close-others="true">
+                        <accordion-group class="panel"
+                                         data-ng-class="{'panel-success': resource.parent == null, 'panel-resource-subscribe': resource.parent != null, 'archived': resource.archived}">
+                            <div ng-include src="BASE_CONFIG.urls.partials.teacher.resource.panel"></div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+                <div class="col-xs-1">
+                            <span data-ng-click="removeFromCollection(editedResource.metadata, $index)"
+                                  class="glyphicon glyphicon-remove"
+                                  title="{{ 'meta.couple.supprimer'|trans }}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+                <input ng-model="resourceAddMD.key" type="text"
+                       placeholder="{{ 'meta.cle.placeholder'|trans }}" class="form-control"></div>
+            <div class="col-xs-7">
+                <input ng-if="resource == null"
+                       ng-model="resourceAddMD.value" type="text"
+                       placeholder="{{ 'meta.valeur.placeholder'|trans }}" class="form-control">
+                <accordion ng-if="resource != null"
+                           close-others="true">
+                    <accordion-group class="panel"
+                                     data-ng-class="{'panel-success': resource.parent == null, 'panel-resource-subscribe': resource.parent != null, 'archived': resource.archived}">
+                        <div ng-include src="BASE_CONFIG.urls.partials.teacher.resource.panel'"></div>
+                    </accordion-group>
+                </accordion>
+            </div>
+            <div class="col-xs-2">
+                <span data-ng-click="resourceCancelMD()"
+                      class="glyphicon glyphicon-remove"
+                      title="{{ 'ressource.selectionner.annuler'|trans }}"></span>
+                <span data-ng-click="openSelectResource()"
+                      class="glyphicon glyphicon-file"
+                      title="{{ 'ressource.selectionner.meta'|trans }}"></span>
+                <span data-ng-click="resourceAddMetadataField(editedResource.metadata)"
+                      class="glyphicon glyphicon-ok"
+                      title="{{ 'ressource.ajouter_meta'|trans }}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="navbar">
+    <button back-Button class="btn btn-success"
+            title="{{ 'ressource.retour.texte'|trans }}">
+        {{ 'ressource.retour.titre'|trans }}
+    </button>
+    <button ng-if="editedResource.owner == BASE_CONFIG.currentUserId && editedResource.parent == null"
+            ng-click="updateResource()" class="btn btn-success"
+            title="{{ 'ressource.sauvgarder.texte'|trans }}">
+        {{ 'ressource.sauvegarder.titre'|trans }}
+    </button>
+    <button ng-if="editedResource.owner == BASE_CONFIG.currentUserId && editedResource.removable"
+            ng-click="deleteResource(editedResource)" back-Button
+            class="btn btn-danger pull-right"
+            title="{{ 'ressource.supprimer.texte'|trans }}">
+        {{ 'ressource.supprimer.titre'|trans }}
+    </button>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>

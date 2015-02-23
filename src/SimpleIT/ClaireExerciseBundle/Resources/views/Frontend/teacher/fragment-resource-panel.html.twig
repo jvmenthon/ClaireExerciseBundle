@@ -1,0 +1,166 @@
+<accordion-heading class="panel-heading" style="padding-bottom: 0">
+    <div class="row">
+        <div class="col-xs-1" ng-switch="resource.type" ui-draggable="true" drag="resource">
+            <div ng-switch-when="text">
+                <span title="Texte" class="glyphicon glyphicon-font" style="font-size: 320%"></span>
+            </div>
+            <div ng-switch-when="picture">
+                <img ng-src="{{ '{{BASE_CONFIG.urls.images.uploads}}{{resource.content.source}} '}} " style="width: 55px; height: 55px;"/>
+            </div>
+            <div ng-switch-when="multiple-choice-question">
+                <span title="{{ 'question.qcm'|trans }}" class="glyphicon glyphicon-check" style="font-size: 320%"></span>
+            </div>
+            <div ng-switch-when="open-ended-question">
+                <span title="{{ 'question.qroc'|trans }}" class="glyphicon glyphicon-question-sign" style="font-size: 320%"></span>
+            </div>
+            <div ng-switch-when="sequence">
+                <span class="glyphicon glyphicon-sort-by-order" style="font-size: 320%"></span>
+            </div>
+        </div>
+
+        <div class="col-xs-11">
+            <div class="col-centered" ui-draggable="true" drag="resource">
+                {{ '{{ resource.title }}' }}&nbsp;<span class="caret"></span>
+            </div>
+            <div class="col-centered pull-right" ui-draggable="true" drag="resource">
+                <h4>
+                    <ng-switch on="parentSection"
+                        ng-if="resourcePanelContext == 'list' && !isSelectResource">
+                        <span ng-switch-when="model"
+                              ui-sref="modelEdit.resourceEdit({ resourceid:resource.id })"
+                              class="glyphicon"
+                              data-ng-class="{'glyphicon-edit': resource.owner == BASE_CONFIG.currentUserId && resource.parent == null, 'glyphicon-eye-open': resource.owner != BASE_CONFIG.currentUserId || resource.parent != null}"
+                              title="{{ 'ressource.editer_voir'|trans }}"></span>
+                        <span ng-switch-default
+                              ui-sref="resourceEdit({ resourceid:resource.id })"
+                              class="glyphicon"
+                              data-ng-class="{'glyphicon-edit': resource.owner == BASE_CONFIG.currentUserId && resource.parent == null, 'glyphicon-eye-open': resource.owner != BASE_CONFIG.currentUserId || resource.parent != null}"
+                              title="{{ 'ressource.editer_voir'|trans }}"></span>
+                    </ng-switch>
+                    &nbsp;
+                    <span
+                        ng-if="resource.owner == BASE_CONFIG.currentUserId && resourcePanelContext == 'list' && !isSelectResource"
+                        ng-click="$event.stopPropagation();duplicateResource(resource)"
+                        class="glyphicon glyphicon-plus"
+                        title="{{ 'ressource.dupliquer'|trans }}"></span>
+                    <span
+                        ng-if="resource.owner !== BASE_CONFIG.currentUserId && resourcePanelContext == 'list' && !isSelectResource"
+                        ng-click="$event.stopPropagation();importResource(resource)"
+                        class="glyphicon glyphicon-log-in"
+                        title="{{ 'ressource.importer'|trans }}"></span>
+                    <span
+                        ng-if="resource.owner !== BASE_CONFIG.currentUserId && resourcePanelContext == 'list' && !isSelectResource"
+                        ng-click="$event.stopPropagation();subscribeResource(resource)"
+                        class="glyphicon glyphicon-share-alt"
+                        title="{{ 'ressource.abonner'|trans }}"></span>
+                    &nbsp;
+                    <span
+                        ng-if="resource.owner == BASE_CONFIG.currentUserId && resource.archived && resourcePanelContext == 'list' && !isSelectResource"
+                        ng-click="$event.stopPropagation();restoreResource(resource)"
+                        class="glyphicon glyphicon-open"
+                        title="{{ 'ressource.restaurer'|trans }}"></span>
+                    <span
+                        ng-if="resource.owner == BASE_CONFIG.currentUserId && !resource.archived && resourcePanelContext == 'list' && !isSelectResource"
+                        ng-click="$event.stopPropagation();archiveResource(resource)"
+                        class="glyphicon glyphicon-save"
+                        title="{{ 'ressource.archiver'|trans }}"></span>
+                    <span
+                        ng-if="resource.owner == BASE_CONFIG.currentUserId && resourcePanelContext == 'list' && !isSelectResource && resource.removable"
+                          ng-click="$event.stopPropagation();deleteResource(resource)" class="glyphicon glyphicon-remove"
+                          title="{{ 'ressource.supprimer'|trans }}"></span>
+                    <span
+                        ng-if="resource.owner == BASE_CONFIG.currentUserId && resourcePanelContext == 'list' && !isSelectResource && !resource.removable"
+                          class="glyphicon glyphicon-remove"
+                          style="opacity: 0.3"
+                          ng-click="$event.stopPropagation()"
+                          title="{{ 'ressource.supprimer_utilisee'|trans }}"></span>
+
+                    <span ng-if="isSelectResource"
+                          ng-click="$event.stopPropagation();selectResource(resource)"
+                          class="glyphicon glyphicon-ok"
+                          title="{{ 'ressource.selectionner'|trans }}"></span>
+                </h4>
+            </div>
+            <div class="row" style="margin-left: 3px">
+                <div style="margin: 1% 1% 0;">
+                    <label
+                        class="panel panel-success" title="Métadonnée de cette ressource"
+                        data-ng-repeat="meta in resource.metadata track by $index" style="margin: 2px;">
+                        &nbsp;<span ui-draggable="true" drag="meta.key">{{ '{{ meta.key }}' }}</span>:&nbsp;<span ng-if="meta.value.substring(0,2) != '__' || isNan(meta.value.substring(2))">{{ '{{ meta.value }}' }}</span>&nbsp;<span
+                            ng-if="meta.value.substring(0,2) == '__' && !isNan(meta.value.substring(2))"
+                            style="color: red"
+                            ng-click="$event.stopPropagation();viewResource(resources[meta.value.substring(2)])">{{ '{{ resources[meta.value.substring(2)].title }}' }}</span>&nbsp;
+                    </label>
+                    <label class="panel panel-success"
+                           title="{{ 'ressource.mot-cle'|trans }}"
+                           data-ng-repeat="keyword in resource.keywords track by $index" style="margin: 2px;">
+                        &nbsp;{{ '{{ keyword }}' }}&nbsp;
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</accordion-heading>
+<div class="col-centered">
+    <label>{{ 'auteur'|trans }}&nbsp;:&nbsp;</label>{{ '{{ users[resource.author].user_name }}' }}
+</div>
+<div class="col-centered">
+    <label>{{ 'proprietaire'|trans }}&nbsp;:&nbsp;</label>{{ '{{ users[resource.owner].user_name }}' }}
+</div>
+<div class="col-centered">
+    <label>{{ 'partage'|trans }}&nbsp;:&nbsp;</label>
+    <ng-switch on="resource.public">
+        <span ng-switch-when="true">{{ 'oui'|trans }}</span>
+        <span ng-switch-when="false">{{ 'non'|trans }}</span>
+    </ng-switch>
+</div>
+<div class="col-centered">
+    <label>{{ 'complet'|trans }}&nbsp;:&nbsp;</label>
+    <ng-switch on="resource.complete">
+        <span ng-switch-when="true">{{ 'oui'|trans }}Oui</span>
+        <span ng-switch-when="false">{{ 'non'|trans }}Non</span>
+    </ng-switch>
+</div>
+<div class="col-centered" ng-switch="resource.type">
+    <div ng-switch-when="text">
+        <label>{{ 'ressource.type'|trans }}&nbsp;:&nbsp;</label>{{ 'ressource.texte'|trans }}
+    </div>
+    <div ng-switch-when="picture">
+        <label>{{ 'ressource.type'|trans }}&nbsp;:&nbsp;</label>{{ 'ressource.image'|trans }}
+    </div>
+    <div ng-switch-when="multiple-choice-question">
+        <label>{{ 'ressource.type'|trans }}&nbsp;:&nbsp;</label>{{ 'ressource.qcm'|trans }}
+    </div>
+    <div ng-switch-when="open-ended-question">
+        <label>{{ 'ressource.type'|trans }}&nbsp;:&nbsp;</label>{{ 'ressource.qroc'|trans }}
+    </div>
+    <div ng-switch-when="sequence">
+        <label>{{ 'ressource.type'|trans }}&nbsp;:&nbsp;</label>{{ 'ressource.sequence'|trans }}
+    </div>
+</div>
+<div class="col-centered" ng-switch="resource.type">
+    <div ng-switch-when="text">
+        <label>{{ 'contenu'|trans }}&nbsp;:&nbsp;</label><div ng-bind-html="to_trusted(resource.content.text)"></div>
+    </div>
+    <div ng-switch-when="picture">
+        <label>{{ 'contenu'|trans }}&nbsp;:&nbsp;</label>
+        <a href="{{ '{{BASE_CONFIG.urls.images.uploads}}{{resource.content.source}}' }}"
+           data-lightbox="res" data-title="La ressource">
+            <img ng-src="{{ '{{BASE_CONFIG.urls.images.uploads}}{{resource.content.source}}' }}"/>
+        </a>
+    </div>
+    <div ng-switch-when="multiple-choice-question">
+        <label>{{ 'question'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resource.content.question }}' }}
+    </div>
+    <div ng-switch-when="open-ended-question">
+        <label>{{ 'question'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resource.content.question }}' }}
+    </div>
+</div>
+<div class="col-centered" ng-switch="resource.type">
+    <div ng-switch-when="multiple-choice-question">
+        <label>{{ 'commentaire'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resource.content.comment }}' }}
+    </div>
+    <div ng-switch-when="open-ended-question">
+        <label>{{ 'commentaire'|trans }}&nbsp;:&nbsp;</label>{{ '{{ resource.content.comment }}' }}
+    </div>
+</div>

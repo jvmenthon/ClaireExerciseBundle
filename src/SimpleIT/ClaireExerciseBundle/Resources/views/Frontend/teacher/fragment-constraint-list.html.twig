@@ -1,0 +1,183 @@
+<div class="panel-group">
+    <div class="panel panel-info"
+         data-ng-repeat="metadata_constraint in metadata_constraints track by $index">
+        <div class="panel-heading">
+            <ng-switch on="metadata_constraint.comparator">
+                <div ng-switch-when="exists" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'meta.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                </div>
+                <div ng-switch-when="between" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.inferieur.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[0]" class="form-control"
+                               placeholder="{{ 'cle.inferieure.placeholder'|trans }}">
+                        <h5>{{ 'cle.supperieur.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[1]" class="form-control"
+                               placeholder="{{ 'cle.supperieur.placeholder'|trans }}">
+                    </div>
+                </div>
+                <div ng-switch-when="in" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.valeur.title'|trans }}</h5>
+                    </div>
+                    <div data-ng-repeat="value in metadata_constraint.values track by $index">
+                        <div class="col-xs-5">
+                            <div class="constraint-value">
+                                {{ value }}
+                            </div>
+                        </div>
+                        <div class="col-xs-1">
+                            <span data-ng-click="modelRemoveField(metadata_constraint.values, $index)"
+                                  class="glyphicon glyphicon-remove"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="col-xs-5">
+                            <input type="text" ng-model="newValue" class="form-control"
+                                   placeholder="{{ 'cle.valeur.placeholder'|trans }}">
+                        </div>
+                        <div class="col-xs-1">
+                            <span data-ng-click="metadata_constraint.values.push(newValue); newValue = ''"
+                                  class="glyphicon glyphicon-ok"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="gt" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.superieur.indiquee.trans'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[0]" class="form-control"
+                               placeholder="{{ 'cle.superieur.placeholder'|trans }}">
+                    </div>
+                </div>
+                <div ng-switch-when="gte" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.superieur_egal.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[0]" class="form-control"
+                               placeholder="{{ 'cle.inferieur.placeholder'|trans }}">
+                    </div>
+                </div>
+                <div ng-switch-when="lt" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.inferieur.indiquee.trans'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[0]" class="form-control"
+                               placeholder="{{ 'cle.superieur.placeholder'|trans }}">
+                    </div>
+                </div>
+                <div ng-switch-when="lte" class="row">
+                    <div class="col-xs-10">
+                        <h5>{{ 'cle.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.key" class="form-control" placeholder="{{ 'cle.placeholder'|trans }}"
+                               ui-on-Drop="onDropMetadataKey($event,$data,metadata_constraint,'key')">
+                    </div>
+                    <div class="col-xs-2">
+                            <span data-ng-click="modelRemoveField(metadata_constraints, $index)"
+                                  class="glyphicon glyphicon-remove col-centered pull-right"></span>
+                    </div>
+                    <div class="col-xs-12">
+                        <h5>{{ 'cle.inferieur_egal.title'|trans }}</h5>
+                        <input type="text" ng-model="metadata_constraint.values[0]" class="form-control"
+                               placeholder="{{ 'cle.superieur.placeholder'|trans }}">
+                    </div>
+                </div>
+            </ng-switch>
+        </div>
+    </div>
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-plus"
+                      title="{{ 'cle.contrainte.title'|trans }}"></span>&nbsp;
+                <div class="btn-group">
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.existe'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'exists')">
+                        &exist;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.egal'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'in')">
+                        &isin;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.superieur'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'gt')">
+                        &gt;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.superieur_egal'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'gte')">
+                        &ge;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.inferieur'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'lt')">
+                        &lt;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.inferieur_egal'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'lte')">
+                        &le;
+                    </button>
+                    <button class="btn btn-info"
+                            title="{{ 'cle.contrainte.interval'|trans }}"
+                            data-ng-click="modelAddBlockResourceConstraint(metadata_constraints, 'between')">
+                        &lt;..&lt;
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
