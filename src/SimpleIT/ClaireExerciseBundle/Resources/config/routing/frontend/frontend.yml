@@ -1,3 +1,15 @@
 frontend_index:
     pattern: /
     defaults: { _controller: SimpleITClaireExerciseBundle:Frontend/Frontend:index }
+    
+frontend_learner_template_angular:
+    pattern : /resources/templateAngular/learner/{file}
+    defaults: { _controller: SimpleITClaireExerciseBundle:Frontend/Frontend:learnerTemplateAngular }
+
+frontend_teacher_template_angular:
+    pattern : /resources/templateAngular/teacher/{file}
+    defaults: { _controller: SimpleITClaireExerciseBundle:Frontend/Frontend:teacherTemplateAngular }
+
+frontend_js_translation:
+    pattern : /resources/jstranslation
+    defaults: { _controller: SimpleITClaireExerciseBundle:Frontend/Frontend:jsTranslation }
