@@ -49,20 +49,21 @@ class FrontendController extends BaseController
             );
         }
     }
-	
-	 public function learnerTemplateAngularAction($file){
+    
+    public function learnerTemplateAngularAction($file){
 
-        if ($this->get('security.context')->isGranted('ROLE_WS_CREATOR')) {
             return $this->render(
                     'SimpleITClaireExerciseBundle:Frontend/learner:'.$file.'.html.twig'
             );
-        }
     }
 
      public function teacherTemplateAngularAction($file){
-        return $this->render(
-                'SimpleITClaireExerciseBundle:Frontend/teacher:'.$file.'.html.twig'
-        );
+        if ($this->get('security.context')->isGranted('ROLE_WS_CREATOR')) {
+            return $this->render(
+                    'SimpleITClaireExerciseBundle:Frontend/teacher:'.$file.'.html.twig'
+            );
+
+        }
     }
 
     public function jsTranslationAction(){
