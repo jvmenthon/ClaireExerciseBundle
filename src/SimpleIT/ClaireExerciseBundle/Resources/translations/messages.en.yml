@@ -1,0 +1,347 @@
+annexes:
+    titre: Annexes
+    texte: Document annexe
+
+document:
+    titre: Documents
+    texte: %Documents annexes à présenter à l'apprenant après la consigne lors de la résolution d'un exercice. Il peut s'agir de texte ou d'image. Ajouter-les en les glissant depuis la liste des ressource.
+
+divers:
+    clique_agrandir: Click to enlarge
+    reponse: Your answer
+    score: Your score
+
+exercice :
+    titre: Exercise
+    indice: Indice of correction
+    creer:
+        qcm: Create a MCQ
+        qroc: Create an exercise of short response
+        appariement: Create an exercise model of matching
+        ordonnacement: Create an exercise model of ordering
+        groupement: Create an exercise model of grouping
+    generer:
+        voir: Show exercises for this model
+    type:
+        qcm: MCQ
+        qroc: Short and opened question
+        appariement: Matching exercise
+        ordonnacement: Orderning exercise
+        groupement: Grouping exercise
+
+    proposition:
+        titre: Proposals
+        correcte: Good proposal
+        forcer: Force to use
+        intitule:  Title of the proposal 
+        ajouter: Add a proposal
+        nombre: Number of proposals
+        nombre_juste: Number of good proposals
+        melanger:
+            melanger: Mix proposals
+            pas_melanger: Don't mix proposals
+    solution:
+        titre: Solution
+        ajouter: Add solution
+        possible: Possible solutions
+
+
+    tentative:
+        creer: Show the attempts for this exercise
+        nouvelle: New attempts for this exercise
+        reponse_aucune: Neither response for this exercise
+        repondre: Reply to this attempts
+        voir: Show this attemps
+
+    reponse:
+        partie_fixe:
+            titre: Fixed Part
+            texte: %Partie fixe de la paire à laquelle vous devez associer une partie mobile
+        partie_mobile:
+            titre: Moving Part
+            depose: Drop moving part here
+        format:
+            titre: Response format expected
+        attendue:  The right answer
+        proposition: Your answer
+        solution: Solution
+        valeur: Value
+
+filtre:
+    type: Filter by type
+    model_exercice: Filter my exercises models
+    ressources : Filter my ressources
+    supprimer: Remove this filter
+    ajouter: Add this filter
+
+groupe:
+    gestion:
+        label: Group management
+        affichage: View mode of groups names
+        afficher: Display
+        cacher: Hide
+        demander: Askeing the learner
+    liste:
+        label: List the groups
+        nom: Name of the group
+        ajouter: Add a new group
+
+information:
+    id:
+        titre: ID
+    auteur:
+        titre: Author
+    titre:
+        titre: Title
+        texte: Allow find this model in list
+    
+    proprietaire:
+        titre: Owner
+
+    option:
+        partage:
+            titre: Sharing
+            texte: This model is it shared with others authors?
+        archive:
+            titre: Archiving
+        archives:
+            titre: Archiving
+        complet:
+            titre: Complete
+            texte: This model is it valid for exercises generation? 
+            texte-ressource: This resource is it valid (usable in an exercise)? 
+        brouillon:
+            titre: Draft
+        prives:
+            titre: Privates
+        publics:
+            titre: Publics
+            Publiques: Publics
+
+    contenu:
+        titre: Content
+    question:
+        titre: Answer
+
+    commentaire:
+        titre: Comment
+
+    consigne:
+        titre: Instruction
+        placeholder: Instruction of exercise
+        
+meta:
+    titre: Metadata
+    texte: Research in metadata : enter key/value couple or just the key or just the value.
+    cle:
+        placeholder: New key
+    valeur:
+        placeholder: New value
+    filtre:
+        ajouter: Add this filter
+        supprimer: Remove this filter
+    couple:
+        ajouter: Add this metadata couple
+        supprimer: Add this metadata couple
+
+model:
+    exercice:
+        titre: My exercice model
+        texte: List of your exercises or accessibles exercises
+        aucun: No exercise for this model
+    essayer:
+        titre: Try
+        texte: Try this model
+        exercice: Try an exercise for this model.
+        exercice_non_complet: (impossible, the model is not complete)
+    retour:
+        titre: Return
+        texte: Return to previous screen. Toute modification non sauvegardée sera perdue.
+    sauvegarder:
+        titre: Save
+        texte: Save the modification. Cannot be canceled.
+    sauvegarder_essayer:
+        titre: Try
+        texte: Save and try
+    supprimer:
+        titre: Remove
+        texte: Remove this model. It is possible only if no exercise are generate by this.
+    utilise: Remove this model (impossible, this model is used)
+    voir: Show this model (no change)
+    creer: Create a model
+    editer: Edite this model
+    dupliquer: "Duplicate this model : create a new model identical."
+    importer: "Import this model : create a new same model whose you are owner. All resourses are imported."
+    abonner: "%S'abonner à ce modèle : il fait à présent partie de vos modèles privés mais vous faites confiance à l'auteur. Vous bénéficierez des modifications qu'il apportera au modèle. Vous ne pourrez pas le modifier de votre côté. Il s'agit d'un raccourci vers le modèle d'un autre utilisateur."
+    restaurer: Restore this model
+
+    meta: Metadata of this model
+
+    type: Type of model
+    consigne: Order of exercise model
+    exercice:
+        voir: Show generate exercises whith this model.
+        aucun: No exercise for this model
+
+mots-cle:
+    titre: Keywords
+    recherche:
+        titre: Research in keywords
+        texte: Research in keywords
+    ajouter:
+        titre: Add the keyword
+        placeholder : New keyword
+    supprimer:
+        titre: Remove this keyword
+
+mot:
+    oui: yes
+    non: no
+    resultat: result
+    score: your score
+    aide: help
+
+navigation:
+    retour:
+        titre: Comeback
+        texte: Comeback previous page. All progression don't save are canceled.
+        claroline: Comeback Claroline
+    valider:
+        titre: Validate
+        texte: Send answer and obtain the correction
+    nouvelle_tentative:
+        titre: New attempt
+    aller_partie: Go to part
+    de_exercice: of exercise
+
+objet:
+    glisser-deposer:
+        titre: Object for drag-and-drop
+        texte: Drop the objects in below frame for gather.
+        bonne-paire: Drop objects below and create good couple.
+        ordre: Drop the objects in order.
+    zone:
+        groupe: Group
+        depose: Drop object here
+        depose-un: Drop objects here
+        placee:
+            image: Placed image
+    correction:
+        titre: Correction
+        reponse:
+            titre: Your response
+        solution: Solution
+        autre_groupe: %Cet objet aurait du être placé dans ce groupe
+
+
+
+question:
+    bloc:
+        titre: Block of questions
+        descrition: %Un bloc désigne un ensemble de ressources dont une partie sera tirée aléatoirement lors de la génération d'exercices
+        paire: Block of matching
+    melange:
+        titre: Mix the questions
+        melanger: Mix
+        pas_melanger: D'ont mix
+
+    nombre:
+        question:
+            titre: Number of questions
+            texte: %Le nombre de ressources à utiliser parmi celles de ce bloc pour constituer des paires lors de la génération de l'exercice
+        proposition:
+            titre: Number of propositions
+            texte: Number of propositions by question
+            ignore: %Si cette option vaut 0, elle est ignorée. Sinon, elle remplace la valeur éventuelle précisée dans chacune des ressources.
+        proposition_juste:
+            titre: Number of right propostions
+            texte: Number of right propostions by questions
+
+        type:
+            qcm: MCQ question
+
+
+
+
+recherche:
+    titre: Research
+    placeholder: Research
+    texte: Research in title, metadata and keywords of model
+
+ressource:
+    titre: My resources
+    texte: List of your ressourses and accessible ressourses
+
+    type:
+        image: Image
+        texte: Text
+        qcm: MCQ
+        qroc: Open and short question
+    creer:
+        titre: Create an resource
+        image: Create an image
+        texte: Create an text
+
+    bloc:
+        titre: %Un bloc désigne un ensemble de ressources dont une partie sera tirée aléatoirement lors de la génération d'exercices
+        texte: Block of resource
+
+    nombre:
+        titre: %Le nombre de ressources à utiliser parmi celles de ce bloc pour constituer la liste des objets à placer lors de la génération de l'exercice
+        texte: Number of resources
+
+    orpheline :
+        label: Orphan resource (whithout group name)
+        pas_utiliser:
+          label: Don't use this resource
+          description: The orphan resources are don't use by exercise model.
+        regrouper:
+          label: Gather
+          description: The orphans ressources are grouping in the new group "Other".
+
+    retour:
+        titre: Comeback
+        texte: Comeback previous screen. All don't save modification are canceled.
+    sauvegarder:
+        titre: Save
+        texte: Save the modifications. Will not be canceled.
+    supprimer:
+        titre: Delete
+        texte: Delete this resource. It is possible only if this ressource isn't use.
+
+    formule:
+        titre: Formula
+        nom: Formula name
+        nouvelle: New formula
+        type:
+            titre: Type
+            entier: Whole
+            decimal:
+                titre: Decimal
+                nombre: Number of decimal
+        variable:
+            titre: Variables
+            nom: Variable name
+            nouvelle: New variable
+            valeur:
+                titre: Value
+                liste: Listing of value
+                intervalle: Interval
+                expression: Expression
+                min: Min
+                max: Max
+                pas: Step
+        inconnue:
+            titre: Unknown
+            nom: Unknown name
+
+    selectionner:
+        annuler: Cancel selected resource
+        meta: Select this resource as metadata
+    ajouter_meta: Add this metadate couple
+
+tentative:
+    titre: My attempts
+    model:
+        nouvelle: New attempts for this model
+        incomplet: (impossible, isn't complete)

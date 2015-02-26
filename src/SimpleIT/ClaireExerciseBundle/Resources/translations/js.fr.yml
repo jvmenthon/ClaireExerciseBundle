@@ -1,39 +1,39 @@
 controlleur:
     error :
-        101: Le modèle parent n'est pas public,
-        201: Il faut préciser si les questions doivent être mélangées,
-        202: Il faut au moins un bloc de ressources dans le modèle,
-        203: L'option d'affichage des noms de groupe est invalide,
-        204: L'option pour donner le premier ou le dernier est invalide,
-        205: Le modèle doit être basé sur une séquence ou des blocs d'objets,
-        206: Le tri doit être croissant ou décroissant,
-        207: L'option montrer les valeurs doit être renseignée,
-        301: Le nombre de propositions justes doit être positif ou nul (option ingnorée),
-        302: La clé d'appariement doit être précisée dans chaque bloc,
-        303: Option KeepAll invalide,
-        304: Les options pour utiliser le premier et le dernier doivent être renseignées,
-        305: La clé de métadonnées de chaque bloc doit être précisée,
-        306: Le nombre d'objets à piocher dans le bloc doit être strictement positif !!!%%%%%!!!!,
-        307: Chaque bloc dit contenir au moins une ressource ou avoir des contraintes,
-        308: Un bloc est en mode liste mais ne contient aucune ressource dans la liste,
-        401: Le type de ressource choisit en contrainte n'est pas valide pour ce type d'exercise,
-        402: Il faut au moins une contrainte dans chaque bloc ou l'option contrainte est choisie,
-        501: Une ressource comporte un id vide,
-        502: Une ressource est introuvable,
-        503: Une ressource est d'un type non valide pour ce type d'exercice,
-        504: Une ressource ne dispose pas de la clé de métadonnée requise par le bloc,
-        601: Contrainte invalide : le comparateur est vide,
-        602: Contrainte invalide : la clé est vide,
-        701: Il faut choisir quoi faire des ressources invalides : les placer dans le groupe autre ou ne pas les utiliser.,
-        702: Un nom de groupe ne peut pas être vide,
-        703: Chaque groupe doit comporter au moins une contrainte,
-        801: La source d'une image ne doit pas être vide,
-        802: Le contenu d'un texte ne doit pas être vide,
-        803: Le contenu d'une question ne doit pas être vide,
-        804: Il faut préciser au moins une solution,
-        805: Il faut préciser au moins une proposition,
-        806: Le contenu d'une porposition ne peut pas être vide,
-        807: Le type de séquence doit être précisé,
-        808: Impossible de valider le contenu de la séquence,
-        809: Chaque formule doit posséder un nom,
-        810: Chaque formule doit posséder une équation ou faire référence à une connaissance du domaine'
+        101: Le modèle parent n'est pas public
+        201: Il faut préciser si les questions doivent être mélangées
+        202: Il faut au moins un bloc de ressources dans le modèle
+        203: L'option d'affichage des noms de groupe est invalide
+        204: L'option pour donner le premier ou le dernier est invalide
+        205: Le modèle doit être basé sur une séquence ou des blocs d'objets
+        206: Le tri doit être croissant ou décroissant
+        207: L'option montrer les valeurs doit être renseignée
+        301: Le nombre de propositions justes doit être positif ou nul (option ingnorée)
+        302: La clé d'appariement doit être précisée dans chaque bloc
+        303: Option KeepAll invalide
+        304: Les options pour utiliser le premier et le dernier doivent être renseignées
+        305: La clé de métadonnées de chaque bloc doit être précisée
+        306: Le nombre d'objets à piocher dans le bloc doit être strictement positif
+        307: Chaque bloc dit contenir au moins une ressource ou avoir des contraintes
+        308: Un bloc est en mode liste mais ne contient aucune ressource dans la liste
+        401: Le type de ressource choisit en contrainte n'est pas valide pour ce type d'exercise
+        402: Il faut au moins une contrainte dans chaque bloc ou l'option contrainte est choisie
+        501: Une ressource comporte un id vide
+        502: Une ressource est introuvable
+        503: Une ressource est d'un type non valide pour ce type d'exercice
+        504: Une ressource ne dispose pas de la clé de métadonnée requise par le bloc
+        601: Contrainte invalide : le comparateur est vide
+        602: Contrainte invalide : la clé est vide
+        701: Il faut choisir quoi faire des ressources invalides : les placer dans le groupe autre ou ne pas les utiliser.
+        702: Un nom de groupe ne peut pas être vide
+        703: Chaque groupe doit comporter au moins une contrainte
+        801: La source d'une image ne doit pas être vide
+        802: Le contenu d'un texte ne doit pas être vide
+        803: Le contenu d'une question ne doit pas être vide
+        804: Il faut préciser au moins une solution
+        805: Il faut préciser au moins une proposition
+        806: Le contenu d'une porposition ne peut pas être vide
+        807: Le type de séquence doit être précisé
+        808: Impossible de valider le contenu de la séquence
+        809: Chaque formule doit posséder un nom
+        810: Chaque formule doit posséder une équation ou faire référence à une connaissance du domaine
